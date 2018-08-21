@@ -1,5 +1,5 @@
 # NLP-
-This repository contains details and key points of research papers related to NLP and Deep Learning
+This repository contains key points of research papers related to NLP and Deep Learning, and implementation of some applications including time series prediction, text clustering and so on.
 
 ## Reports
 
