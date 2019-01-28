@@ -11,3 +11,9 @@ This repository contains key points of research papers related to NLP and Deep L
 ## Code
 
 [Text Classfication on IMDB using CNN, RNN, Dense](https://github.com/rameshjesswani/NLP-/blob/master/dl_models/text_classification.py)
+
+[LSTM on IMDB with glove embedding]
+(https://github.com/rameshjesswani/NLP-/blob/master/dl_models/LSTM_on_imdb.py)
+
+[Text Clustering using KMeans]
+(https://github.com/rameshjesswani/NLP-/blob/master/examples/TextClusteringUsingKMeans.ipynb)
