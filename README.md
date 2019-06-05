@@ -10,6 +10,8 @@ This repository contains key points of research papers related to NLP and Deep L
 
 ## Code
 
+[BERT Results on Quora Question Pair Dataset](https://github.com/rameshjesswani/NLP-/tree/master/dl_models/bert-quora-qa)
+
 [Text Classification using BERT Embeddings](https://github.com/rameshjesswani/NLP-/blob/master/dl_models/bert_imdb_lstm.ipynb)
 
 [Text Classfication on IMDB using CNN, RNN, Dense](https://github.com/rameshjesswani/NLP-/blob/master/dl_models/text_classification.py)
