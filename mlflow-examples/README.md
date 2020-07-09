@@ -15,7 +15,7 @@
 
 ## Example
 
-   To run toy example, implemented using sklearn library. Execute
+   To run toy example, implemented using sklearn library. Execute following command inside `sklearn-example` directory: 
 
    ```mlflow run . -P run_name=linear_regression --no-conda```
 
