@@ -1,10 +1,10 @@
 
 # ML-FLOW
 
-* It is an open-source platform used for managing end-to-end ML lifecycle. It helps users in handling the following tasks:
-* * Keep track of the experiments (e.g. maintains track of classifier's params., datasets used for training, etc)
-* * Managing and deployment of ML models
-* * Packaging ML code (code easily be shared with other members in team)
+It is an open-source platform used for managing end-to-end ML lifecycle. It helps users in handling the following tasks:
+* Keep track of the experiments (e.g. maintains track of classifier's params., datasets used for training, etc)
+* Managing and deployment of ML models
+* Packaging ML code (code easily be shared with other members in team)
 
 
 ## Install Dependencies
