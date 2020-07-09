@@ -1,0 +1,10 @@
+name: sklearn_experiments
+
+# conda_env: my_env.yaml
+# Can have a docker_env instead of a conda_env, e.g.
+# docker_env:
+#   image:  mlflow-docker-example
+
+entry_points:
+  main:
+    command: "python3 basic_example.py"
