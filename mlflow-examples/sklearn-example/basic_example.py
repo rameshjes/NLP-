@@ -5,7 +5,7 @@
 import os
 import warnings
 import sys
-
+import joblib
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
@@ -32,6 +32,11 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
+    output_dir = "./models"
+    if not os.path.isdir(output_dir):
+        os.makedirs(output_dir)
+
+    
     # Read the wine-quality csv file from the URL
     csv_url =\
         'http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv'
@@ -40,6 +45,9 @@ if __name__ == "__main__":
     except Exception as e:
         logger.exception(
             "Unable to download training & test CSV, check your internet connection. Error: %s", e)
+
+    # save dataset for logging 
+    data.to_csv(output_dir + "/winequality-red.csv", sep='\t', encoding='utf-8')
 
     # Split the data into training and test sets. (0.75, 0.25) split.
     train, test = train_test_split(data)
@@ -50,31 +58,27 @@ if __name__ == "__main__":
     train_y = train[["quality"]]
     test_y = test[["quality"]]
 
-    alpha = 0.5
-    l1_ratio = 0.5
-
     with mlflow.start_run():
-        lr = LinearRegression()
-        # lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
-        lr.fit(train_x, train_y)
 
-        predicted_qualities = lr.predict(test_x)
+        # lr = LinearRegression()
+        er = ElasticNet()
+
+        er.fit(train_x, train_y)
+        predicted_qualities = er.predict(test_x)
 
         (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
 
-        print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
         print("  RMSE: %s" % rmse)
         print("  MAE: %s" % mae)
         print("  R2: %s" % r2)
 
-        # mlflow.log_param("alpha", alpha)
-        # mlflow.log_param("l1_ratio", l1_ratio)
+        mlflow.log_param("coefficients", er.coef_)
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
-
+        joblib.dump(er, output_dir + "/" + "ElasticNet.pkl")
         # Model registry does not work with file store
         if tracking_url_type_store != "file":
             # Register the model
@@ -82,6 +86,7 @@ if __name__ == "__main__":
             # please refer to the doc for more information:
             # https://mlflow.org/docs/latest/model-registry.html#api-workflow
             # mlflow.sklearn.log_model(lr, "ElasticnetModel", registered_model_name="ElasticnetWineModel")
-            mlflow.sklearn.log_model(lr, "LinearRegressionModel", registered_model_name="LinearRegressionWineModel")
+
+            mlflow.log_artifact(output_dir, "ElasticNet", registered_model_name="ElasticNetWineModel")
         else:
-            mlflow.sklearn.log_model(lr, "model")
+            mlflow.log_artifact(output_dir, "ElasticNet")

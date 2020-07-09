@@ -1,0 +1,15 @@
+artifact_uri: file:///home/ramesh/github/NLP-/mlflow-examples/sklearn-example/mlruns/0/f4ce3918159f47c3a1c7223c03194faa/artifacts
+end_time: 1594307486324
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: f4ce3918159f47c3a1c7223c03194faa
+run_uuid: f4ce3918159f47c3a1c7223c03194faa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1594307484508
+status: 3
+tags: []
+user_id: ramesh
